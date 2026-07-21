@@ -1,8 +1,9 @@
 
+import { Link } from "react-router-dom";
 import styles from "./HomePageStyle.module.css";
 import { TeacherHomeDto } from "../api/Home";
-import Avatar from "../Components/Avatar"
-import StatCard from "../Components/StatCard"
+import Avatar from "../Components/Avatar";
+import StatCard from "../Components/StatCard";
 
 export default function TeacherHome({ data }: { data: TeacherHomeDto }) {
   const profile = data.profile ?? {
@@ -44,7 +45,8 @@ export default function TeacherHome({ data }: { data: TeacherHomeDto }) {
       ) : (
         <div className={styles.coursesGrid}>
           {courses.map(c => (
-            <div key={c.courseID} className={styles.courseCard}>
+            <Link key={c.courseID} to={`/Course/${c.courseID}`} className={styles.courseCardLink}>
+            <div className={styles.courseCard}>
               <div className={styles.courseImgWrap}>
                 {c.image ? (
                   <img src={c.image} alt={c.title ?? "course"} className={styles.courseImg} />
@@ -84,6 +86,7 @@ export default function TeacherHome({ data }: { data: TeacherHomeDto }) {
                 </div>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       )}

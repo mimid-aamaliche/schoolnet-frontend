@@ -1,8 +1,9 @@
 
+import { Link } from "react-router-dom";
 import styles from "./HomePageStyle.module.css";
 import { StudentHomeDto } from "../api/Home";
-import Avatar from "../Components/Avatar"
-import StatCard from "../Components/StatCard"
+import Avatar from "../Components/Avatar";
+import StatCard from "../Components/StatCard";
 
 
 const isActive = (endDate?: string) =>
@@ -51,7 +52,8 @@ export default function StudentHome({ data }: { data: StudentHomeDto }) {
       ) : (
         <div className={styles.coursesGrid}>
           {courses.map(c => (
-            <div key={c.courseID} className={styles.courseCard}>
+            <Link key={c.courseID} to={`/Course/${c.courseID}`} className={styles.courseCardLink}>
+            <div className={styles.courseCard}>
               <div className={styles.courseImgWrap}>
                 {c.image ? (
                   <img src={c.image} alt={c.title ?? "course"} className={styles.courseImg} />
@@ -92,6 +94,7 @@ export default function StudentHome({ data }: { data: StudentHomeDto }) {
                 </div>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       )}
