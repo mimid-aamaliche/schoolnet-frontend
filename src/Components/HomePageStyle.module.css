@@ -248,3 +248,10 @@
   color: var(--color-label);
   font-weight: 600;
 }
+
+/* ── Clickable card link wrapper ───────────────────────────────────────────── */
+.courseCardLink {
+  display: contents;   /* invisible wrapper — lets the child grid item keep its layout */
+  text-decoration: none;
+  color: inherit;
+}
