@@ -1,0 +1,229 @@
+/* ─── CourseContentsPage — Apple HIG ────────────────────────────────────── */
+
+.main {
+  background: var(--color-bg);
+  min-height: 100vh;
+  padding-bottom: 48px;
+}
+
+/* ── Loading / Error ─────────────────────────────────────────────────────── */
+.main h3 {
+  text-align: center;
+  padding: 48px 20px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-label-2);
+}
+
+/* ── Course Hero Section ──────────────────────────────────────────────────── */
+.course_info_section {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 32px 20px 0;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.course_image_container {
+  flex-shrink: 0;
+  width: 260px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.course_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.course_info_container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.courseTitle {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-label);
+}
+
+.course_field {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 6px;
+}
+
+.course_info_container p {
+  font-size: 15px;
+  color: var(--color-label);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.course_description {
+  font-size: 15px;
+  color: var(--color-label-2) !important;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+@media (max-width: 700px) {
+  .course_info_section { flex-direction: column; }
+  .course_image_container { width: 100%; }
+}
+
+/* ── Edit Button Section ──────────────────────────────────────────────────── */
+.course_edit_section {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 20px 20px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  background: var(--color-gray-5);
+  color: var(--color-label);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-apple),
+    opacity    var(--dur-fast) var(--ease-apple),
+    transform  var(--dur-fast) var(--ease-apple);
+}
+.edit_btn:hover { background: var(--color-gray-4); }
+.edit_btn:active { transform: scale(0.97); opacity: 0.75; }
+
+/* ── Content List Section ─────────────────────────────────────────────────── */
+.course_contents_section {
+  max-width: var(--max-w);
+  margin: 28px auto 0;
+  padding: 0 20px;
+}
+
+.course_contents_section > h3 {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+  margin-bottom: 12px;
+  padding: 0;  /* reset hero's h3 centering */
+  text-align: left;
+}
+
+.course_contents_container {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.content_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.content_list li {
+  border-bottom: 1px solid var(--color-sep);
+}
+.content_list li:last-child { border-bottom: none; }
+
+.content_list li a,
+.content_list li {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-label);
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-apple);
+  cursor: pointer;
+}
+.content_list li a:hover,
+.content_list li:hover { background: #F9F9F9; opacity: 1; }
+@media (prefers-color-scheme: dark) {
+  .content_list li a:hover,
+  .content_list li:hover { background: #2A2A2C; }
+}
+
+/* ── Subscribe Section ────────────────────────────────────────────────────── */
+.subscribe_section {
+  max-width: var(--max-w);
+  margin: 24px auto 0;
+  padding: 0 20px;
+}
+
+.subscribe_btn {
+  width: 100%;
+  height: 52px;
+  background: var(--color-accent);
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    opacity   var(--dur-fast) var(--ease-apple),
+    transform var(--dur-fast) var(--ease-apple);
+}
+.subscribe_btn:hover  { opacity: 0.88; }
+.subscribe_btn:active { transform: scale(0.97); opacity: 0.75; }
+
+/* ── Modal Overlay (same pattern as MyCourses) ───────────────────────────── */
+.ModalContainer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.40);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.ModalContent {
+  position: relative;
+  z-index: 1;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-elevated);
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalIn var(--dur-normal) var(--ease-apple);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}

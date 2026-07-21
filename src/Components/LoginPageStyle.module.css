@@ -1,0 +1,160 @@
+/* ─── LoginPage — Apple HIG ──────────────────────────────────────────────── */
+
+.login_section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  padding: 20px;
+}
+
+.login__container {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-elevated);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ── Form ─────────────────────────────────────────────────────────────────── */
+.form__tag {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form__field h3 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-label);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.form__field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gray);
+  letter-spacing: 0.01em;
+}
+
+.form__field input[type="text"],
+.form__field input[type="password"],
+.form__field input[type="email"] {
+  height: 44px;
+  padding: 0 14px;
+  font-family: var(--font-system);
+  font-size: 17px;
+  color: var(--color-label);
+  background: var(--color-bg);
+  border: 1px solid var(--color-sep-opaque);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition:
+    border-color var(--dur-fast) var(--ease-apple),
+    box-shadow   var(--dur-fast) var(--ease-apple);
+  width: 100%;
+}
+
+.form__field input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(0,122,255,0.16);
+  background: var(--color-surface);
+}
+
+/* ── Remember Me ───────────────────────────────────────────────────────────── */
+.remember_me_fields {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.remember_me_fields label {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--color-label-2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* ── Role Toggle ───────────────────────────────────────────────────────────── */
+.toggle_field {
+  margin-bottom: 20px;
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-label);
+}
+
+.toggleBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    opacity   var(--dur-fast) var(--ease-apple),
+    transform var(--dur-fast) var(--ease-apple);
+}
+.toggleBtn:hover  { opacity: 0.8; }
+.toggleBtn:active { transform: scale(0.97); opacity: 0.75; }
+
+/* ── Buttons ───────────────────────────────────────────────────────────────── */
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  height: 100px;
+}
+
+.button {
+  flex: 1;
+  height: 50px;
+  border-radius: var(--radius-md);
+  font-size: 17px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition:
+    opacity   var(--dur-fast) var(--ease-apple),
+    transform var(--dur-fast) var(--ease-apple);
+}
+.button:active { transform: scale(0.97); opacity: 0.75; }
+
+/* Primary — Log In */
+#Log_In_Btn {
+  background: var(--color-accent);
+  color: #FFFFFF;
+}
+#Log_In_Btn:hover { opacity: 0.88; }
+
+/* Secondary — Sign Up */
+#Sign_In_Btn {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+#Sign_In_Btn:hover { opacity: 0.85; }

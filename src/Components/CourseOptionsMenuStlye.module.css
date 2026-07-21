@@ -1,0 +1,64 @@
+/* ─── CourseOptionsMenu — Apple HIG ─────────────────────────────────────── */
+/* An action-sheet-style option picker inside a modal                         */
+
+.menuContainer {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-label);
+  text-align: center;
+}
+
+/* Grid of option cards */
+.optionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.optionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 16px;
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  transition:
+    background  var(--dur-fast) var(--ease-apple),
+    opacity     var(--dur-fast) var(--ease-apple),
+    transform   var(--dur-fast) var(--ease-apple);
+}
+.optionCard:hover { background: var(--color-gray-5); }
+.optionCard:active { transform: scale(0.97); opacity: 0.75; }
+
+/* Icon wrapper — 44×44 tap target */
+.iconWrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--color-accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--color-accent);
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-label);
+  text-align: center;
+  letter-spacing: -0.01em;
+}

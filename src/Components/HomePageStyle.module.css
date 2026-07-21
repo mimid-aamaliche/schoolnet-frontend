@@ -1,0 +1,250 @@
+/* ─── HomePage, StudentHome, TeacherHome — Apple HIG ─────────────────────── */
+
+/* Page root */
+.root {
+  background: var(--color-bg);
+  min-height: 100vh;
+  padding: 0 20px 48px;
+}
+
+/* ── Loading / Error States ────────────────────────────────────────────────── */
+.state {
+  text-align: center;
+  padding: 96px 20px;
+  font-size: 15px;
+  color: var(--color-label-2);
+}
+.stateError {
+  text-align: center;
+  padding: 96px 20px;
+  font-size: 15px;
+  color: var(--color-red);
+}
+
+/* ── Hero strip ──────────────────────────────────────────────────────────────*/
+.hero {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 32px 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.heroName {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-label);
+  margin: 0 0 4px;
+}
+
+.heroSub {
+  font-size: 15px;
+  color: var(--color-label-2);
+  margin: 0;
+}
+
+/* ── Avatar ──────────────────────────────────────────────────────────────────*/
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--color-sep-opaque);
+}
+
+.avatarInitials {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+
+/* ── Stats Grid ────────────────────────────────────────────────────────────── */
+.statsGrid {
+  max-width: var(--max-w);
+  margin: 0 auto 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 600px) {
+  .statsGrid { grid-template-columns: 1fr; }
+}
+
+/* StatCard is rendered directly with class from HomePageStyle */
+.statCard {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-label);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gray);
+  letter-spacing: 0.01em;
+}
+
+/* Accent variations */
+.statValue--green { color: var(--color-green); }
+.statValue--blue  { color: var(--color-accent); }
+
+/* ── Section Title ─────────────────────────────────────────────────────────── */
+.sectionTitle {
+  max-width: var(--max-w);
+  margin: 0 auto 12px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+}
+
+/* ── Course Grid ───────────────────────────────────────────────────────────── */
+.coursesGrid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .coursesGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .coursesGrid { grid-template-columns: 1fr; }
+}
+
+/* ── Course Card ────────────────────────────────────────────────────────────── */
+.courseCard {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-apple);
+}
+.courseCard:hover { background: #F9F9F9; }
+@media (prefers-color-scheme: dark) {
+  .courseCard:hover { background: #2A2A2C; }
+}
+
+.courseImgWrap {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.courseImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.courseImgPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: var(--color-gray-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.teacherPlaceholder {
+  background: var(--color-accent-soft);
+}
+
+.courseBody {
+  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.courseTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-label);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.courseMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.courseFee {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* ── Status Badges ─────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.badgeGreen {
+  background: rgba(52,199,89,0.15);
+  color: var(--color-green);
+}
+.badgeAmber {
+  background: rgba(255,159,10,0.15);
+  color: var(--color-orange);
+}
+.badgeGray {
+  background: var(--color-gray-5);
+  color: var(--color-gray);
+}
+
+/* ── Course Stats Row ──────────────────────────────────────────────────────── */
+.courseStatsRow {
+  display: flex;
+  gap: 12px;
+}
+
+.cstat {
+  font-size: 13px;
+  color: var(--color-label-2);
+}
+.cstat strong {
+  color: var(--color-label);
+  font-weight: 600;
+}

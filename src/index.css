@@ -1,0 +1,163 @@
+/* ─── Apple HIG Design System ────────────────────────────────────────────── */
+/* iOS 17/18 visual language — clarity, depth, deference                       */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap');
+
+:root {
+  /* ── Typography ──────────────────────────────────────────── */
+  --font-system: -apple-system, "SF Pro Display", "SF Pro Text",
+                 BlinkMacSystemFont, "Inter", sans-serif;
+
+  /* ── Backgrounds ─────────────────────────────────────────── */
+  --color-bg:           #F2F2F7;   /* iOS system grouped bg   */
+  --color-surface:      #FFFFFF;   /* card / sheet surface    */
+  --color-surface-2:    #F2F2F7;   /* secondary surface       */
+  --color-surface-3:    #E5E5EA;   /* tertiary surface        */
+
+  /* ── Labels ──────────────────────────────────────────────── */
+  --color-label:        #1C1C1E;              /* primary label     */
+  --color-label-2:      rgba(60,60,67,0.60);  /* secondary label   */
+  --color-label-3:      rgba(60,60,67,0.30);  /* tertiary label    */
+  --color-label-4:      rgba(60,60,67,0.18);  /* quaternary label  */
+
+  /* ── Accent & System Colors ──────────────────────────────── */
+  --color-accent:       #007AFF;  /* iOS blue — CTAs & active */
+  --color-accent-soft:  rgba(0,122,255,0.12);
+  --color-green:        #34C759;
+  --color-orange:       #FF9F0A;
+  --color-red:          #FF3B30;
+  --color-gray:         #8E8E93;
+  --color-gray-2:       #AEAEB2;
+  --color-gray-3:       #C7C7CC;
+  --color-gray-4:       #D1D1D6;
+  --color-gray-5:       #E5E5EA;
+
+  /* ── Separators ──────────────────────────────────────────── */
+  --color-sep:          rgba(60,60,67,0.12);
+  --color-sep-opaque:   #C6C6C8;
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --shadow-card:        0 2px 12px rgba(0,0,0,0.08);
+  --shadow-elevated:    0 4px 24px rgba(0,0,0,0.12);
+
+  /* ── Radii ───────────────────────────────────────────────── */
+  --radius-sm:    10px;
+  --radius-md:    14px;
+  --radius-lg:    16px;
+  --radius-xl:    20px;
+  --radius-pill:  100px;
+  --radius-badge: 14px;  /* icon badge */
+
+  /* ── Spacing (8pt grid) ──────────────────────────────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ── Content max-width ───────────────────────────────────── */
+  --max-w: 1080px;
+
+  /* ── Transitions ─────────────────────────────────────────── */
+  --ease-apple:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --dur-fast:     0.2s;
+  --dur-normal:   0.35s;
+}
+
+/* ─── Dark Mode ──────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:        #000000;
+    --color-surface:   #1C1C1E;
+    --color-surface-2: #2C2C2E;
+    --color-surface-3: #3A3A3C;
+
+    --color-label:   #FFFFFF;
+    --color-label-2: rgba(235,235,245,0.60);
+    --color-label-3: rgba(235,235,245,0.30);
+    --color-label-4: rgba(235,235,245,0.18);
+
+    --color-sep:         rgba(84,84,88,0.36);
+    --color-sep-opaque:  #38383A;
+    --color-gray:        #8E8E93;
+    --color-gray-5:      #2C2C2E;
+
+    --shadow-card:    0 2px 12px rgba(0,0,0,0.30);
+    --shadow-elevated:0 4px 24px rgba(0,0,0,0.40);
+  }
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-system);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-label);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Headings ───────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-system);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-label);
+  line-height: 1.2;
+}
+
+/* ─── Links ──────────────────────────────────────────────────────────────── */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: opacity var(--dur-fast) var(--ease-apple);
+}
+a:hover { opacity: 0.75; }
+
+/* ─── Buttons (base) ─────────────────────────────────────────────────────── */
+button {
+  font-family: var(--font-system);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition:
+    transform var(--dur-fast) var(--ease-apple),
+    opacity   var(--dur-fast) var(--ease-apple);
+}
+button:active {
+  transform: scale(0.97);
+  opacity: 0.75;
+}
+
+/* ─── Code ───────────────────────────────────────────────────────────────── */
+code {
+  font-family: "SF Mono", ui-monospace, Menlo, Monaco, "Courier New", monospace;
+}
+
+/* ─── Scrollbar (WebKit) ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-3);
+  border-radius: 3px;
+}

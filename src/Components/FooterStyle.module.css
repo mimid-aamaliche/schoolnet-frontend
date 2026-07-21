@@ -1,0 +1,57 @@
+/* ─── Footer — Apple HIG Minimal Footer ────────────────────────────────── */
+
+.footer {
+  background: var(--color-bg);
+  border-top: 0.5px solid rgba(60, 60, 67, 0.2);
+  padding: 24px 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer {
+    border-top-color: rgba(84, 84, 88, 0.36);
+  }
+}
+
+.footer__container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Social icons row */
+.footer__socialmedia__icons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__socialmedia__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  font-size: 16px;
+  color: var(--color-gray);
+  text-decoration: none;
+  transition: opacity var(--dur-fast) var(--ease-apple);
+}
+.footer__socialmedia__icon:hover { opacity: 0.6; }
+
+/* Copyright */
+.footer__copyrights__text {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-gray);
+  letter-spacing: 0.01em;
+  text-align: center;
+}

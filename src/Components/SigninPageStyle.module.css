@@ -1,0 +1,273 @@
+/* ─── SigninPage — Apple HIG ─────────────────────────────────────────────── */
+
+/* Two-column split: left panel + right form */
+.section {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-bg);
+  font-family: var(--font-system);
+}
+
+/* ── Left – Branding Panel ───────────────────────────────────────────────── */
+.side_image_container {
+  width: 42%;
+  min-width: 360px;
+  background: var(--color-label);    /* #1C1C1E dark — no gradient */
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 48px;
+  gap: 48px;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  align-self: flex-start;
+}
+
+.testimonial_container {
+  text-align: center;
+}
+
+.quote {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 20px;
+}
+
+.author {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+/* ── Right – Form Panel ──────────────────────────────────────────────────── */
+.signup__container {
+  flex: 1;
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  background: var(--color-bg);
+}
+
+/* ── Step Indicator ──────────────────────────────────────────────────────── */
+.stepper_container {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.stepper_container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-sep);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.step_indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-gray-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-gray);
+  z-index: 1;
+  transition: all var(--dur-fast) var(--ease-apple);
+}
+
+.step_active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: rgba(0,122,255,0.1);
+}
+
+.step_completed {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #FFFFFF;
+}
+
+/* ── Form ────────────────────────────────────────────────────────────────── */
+.form__tag {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form__step_title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-label);
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+/* ── Role Cards ──────────────────────────────────────────────────────────── */
+.role_selection_container {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.role_card {
+  flex: 1;
+  padding: 24px 20px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: all var(--dur-fast) var(--ease-apple);
+}
+.role_card:hover { background: #F9F9F9; }
+
+.role_card_active {
+  border-color: var(--color-accent);
+  background: rgba(0,122,255,0.05);
+}
+
+.role_icon { font-size: 32px; display: block; }
+
+.role_title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-label);
+}
+
+.role_desc {
+  font-size: 13px;
+  color: var(--color-label-2);
+  line-height: 1.4;
+}
+
+/* ── Form Fields ─────────────────────────────────────────────────────────── */
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label_text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gray);
+  letter-spacing: 0.01em;
+}
+
+.input_field {
+  height: 44px;
+  padding: 0 14px;
+  font-family: var(--font-system);
+  font-size: 17px;
+  color: var(--color-label);
+  background: var(--color-surface);
+  border: 1px solid var(--color-sep-opaque);
+  border-radius: var(--radius-sm);
+  outline: none;
+  width: 100%;
+  transition:
+    border-color var(--dur-fast) var(--ease-apple),
+    box-shadow   var(--dur-fast) var(--ease-apple);
+}
+.input_field:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(0,122,255,0.16);
+}
+
+.Horizantal_NameBoxes {
+  display: flex;
+  gap: 12px;
+}
+.Horizantal_NameBoxes .form__field { flex: 1; }
+
+/* ── Nav Buttons ─────────────────────────────────────────────────────────── */
+.nav_buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-sep);
+}
+
+.btn_prev {
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-size: 17px;
+  font-weight: 600;
+  background: var(--color-gray-5);
+  color: var(--color-label-2);
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--dur-fast) var(--ease-apple);
+}
+.btn_prev:hover  { opacity: 0.8; }
+.btn_prev:active { transform: scale(0.97); opacity: 0.75; }
+
+.btn_next {
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  font-size: 17px;
+  font-weight: 600;
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  transition:
+    opacity   var(--dur-fast) var(--ease-apple),
+    transform var(--dur-fast) var(--ease-apple);
+}
+.btn_next:hover  { opacity: 0.88; }
+.btn_next:active { transform: scale(0.97); opacity: 0.75; }
+
+/* ── Step animation ──────────────────────────────────────────────────────── */
+.step_content {
+  animation: stepIn var(--dur-normal) var(--ease-apple);
+}
+@keyframes stepIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .section { flex-direction: column; }
+  .side_image_container { width: 100%; min-width: 0; padding: 40px 24px; min-height: auto; }
+  .signup__container { padding: 32px 24px; }
+  .stepper_container { display: none; }
+  .role_selection_container { flex-direction: column; }
+}

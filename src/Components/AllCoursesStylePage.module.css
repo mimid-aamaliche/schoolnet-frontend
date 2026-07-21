@@ -1,0 +1,44 @@
+/* ─── AllCoursesPage — Apple HIG ────────────────────────────────────────── */
+
+.current_context {
+  padding: 32px 20px 16px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.current_context__page_title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-label);
+}
+
+.line_seperator {
+  display: none; /* replaced by visual spacing */
+}
+
+.courses {
+  padding: 8px 20px 48px;
+}
+
+.courses__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .courses__container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .courses__container { grid-template-columns: 1fr; }
+}
+
+/* Ensure Link wrappers don't add underlines */
+.courses__container a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,175 @@
+/* ─── Variables (Included for reference) ─────────────────────────────────── */
+:root {
+  --dur-fast: 0.2s;
+  --ease-apple: cubic-bezier(0.4, 0, 0.2, 1);
+  --color-label: #1d1d1f;
+  --color-label-2: #86868b;
+  --color-accent: #0071e3;
+  --color-sep-opaque: rgba(0, 0, 0, 0.1);
+  --radius-md: 12px;
+}
+
+/* ─── NavBar — Apple HIG Frosted Glass Header (Spaced & Refined) ────────── */
+
+.navBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 72px; /* Increased from 64px for more breathing room */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px; /* Increased side padding for a wider feel */
+  background: rgba(242, 242, 247, 0.72);
+  backdrop-filter: blur(0px) saturate(100%);
+  -webkit-backdrop-filter: blur(0px) saturate(100%);
+  border-bottom: 0.5px solid rgba(60, 60, 67, 0.15); /* Subtler than the original 0.2 */
+  transition:
+    background var(--dur-fast) var(--ease-apple),
+    height var(--dur-fast) var(--ease-apple),
+    backdrop-filter var(--dur-fast) var(--ease-apple),
+    box-shadow var(--dur-fast) var(--ease-apple);
+}
+
+/* Blur and height change activates once user scrolls */
+.navBar.scrolled {
+  height: 64px; /* Slight shrink on scroll to optimize content space */
+  background: rgba(242, 242, 247, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Subtle elevation */
+}
+
+@media (prefers-color-scheme: dark) {
+  .navBar {
+    background: rgba(0, 0, 0, 0.72);
+    border-bottom-color: rgba(84, 84, 88, 0.25);
+  }
+  .navBar.scrolled {
+    background: rgba(28, 28, 30, 0.85);
+  }
+}
+
+/* ─── Item Groups (Left & Right) ───────────────────────────────────────── */
+
+.navBar__items__left,
+.navBar__items__right {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Increased from 4px for better element separation */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Logo ───────────────────────────────────────────────────────────────── */
+
+.navBar__logoLink {
+  text-decoration: none;
+  color: var(--color-label);
+  display: flex;
+  align-items: center;
+}
+
+.navBar__logoText {
+  font-family: 'Caveat', cursive;
+  font-size: 32px;
+  font-weight: 700;
+  margin-right: 16px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Nav Links ──────────────────────────────────────────────────────────── */
+
+.navBar__listItem {
+  display: flex;
+  align-items: center;
+}
+
+.navBar__item a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px; /* Larger hit area */
+  font-size: 16px; /* Slightly larger text */
+  font-weight: 500;
+  color: var(--color-label);
+  border-radius: 12px; /* Smoother corner radius */
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition:
+    background var(--dur-fast) var(--ease-apple),
+    color      var(--dur-fast) var(--ease-apple),
+    transform  var(--dur-fast) var(--ease-apple);
+}
+
+.navBar__item a:hover {
+  background: rgba(60, 60, 67, 0.06); /* Softened from 0.08 */
+  opacity: 1;
+}
+
+.navBar__item a:active {
+  transform: scale(0.97); /* Subtle tactile feedback */
+}
+
+/* Active/current link */
+.navBar__item a.active {
+  color: var(--color-accent);
+}
+
+/* ─── Auth CTA Button ────────────────────────────────────────────────────── */
+
+.navBar__item--cta a {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  padding: 10px 24px; /* More substantial button */
+  border-radius: 22px; /* Modern "Pill" shape */
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.15);
+}
+
+.navBar__item--cta a:hover {
+  opacity: 0.9;
+  background: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);
+  transform: translateY(-1px);
+}
+
+/* ─── Profile Picture ────────────────────────────────────────────────────── */
+
+.navBar__profilePicture {
+  width: 38px; /* Slightly larger icon */
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1.5px solid var(--color-sep-opaque);
+  margin-left: 8px;
+  transition: 
+    opacity var(--dur-fast) var(--ease-apple),
+    transform var(--dur-fast) var(--ease-apple);
+}
+
+.navBar__profilePicture:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* ─── Mobile (< 600px): Responsive Tweaks ──────────────────────────────── */
+
+@media (max-width: 599px) {
+  .navBar { 
+    height: 60px; 
+    padding: 0 20px; 
+  }
+  .navBar__item { 
+    display: none; 
+  }
+  /* Keep the last item (usually profile or Login) visible */
+  .navBar__item:last-child { 
+    display: flex; 
+  }
+}
