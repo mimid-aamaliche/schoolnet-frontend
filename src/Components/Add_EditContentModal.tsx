@@ -119,10 +119,17 @@ function Add_EditContentModal({ courseId, onSuccess, onClose }: Add_EditContentM
             // Step 2: Request MUX Direct Upload URL
             const uploadUrlResponse = await GetDirectUploadUrl(contentId);
 
-            if (!uploadUrlResponse.success || !uploadUrlResponse.Url) {
+            if (!uploadUrlResponse.success) {
                 setLoading(null);
                 setSuccess(false);
-                setError(uploadUrlResponse.message || "Failed to generate MUX upload URL.");
+                setError(uploadUrlResponse.message);
+                return;
+            }
+
+            if (!uploadUrlResponse.Url) {
+                setLoading(null);
+                setSuccess(false);
+                setError("Failed to generate MUX upload URL.");
                 return;
             }
 
