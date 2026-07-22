@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Add_EditContentModalStyle.module.css";
-import { AddContent } from "../api/Content";
+import { AddContent, GetDirectUploadUrl } from "../api/Content";
 import * as UpChunk from '@mux/upchunk';
 
 
@@ -64,7 +64,7 @@ function Add_EditContentModal({ courseId, onSuccess, onClose }: Add_EditContentM
                     console.error("Upload failed:", error);
                     setLoading(null);
                     setSuccess(false);
-                    setError("Upload failed: " + error);
+                    setError("Upload failed: " + (error?.detail?.message || error));
                 });
 
                 upload.on('progress', (progress) => {
@@ -82,6 +82,7 @@ function Add_EditContentModal({ courseId, onSuccess, onClose }: Add_EditContentM
                     setDescription("");
                     setNotes("");
                     setVideoFile(null);
+                    if (onSuccess) onSuccess();
                 });
             } catch (error) {
                 setLoading(null);
@@ -91,7 +92,8 @@ function Add_EditContentModal({ courseId, onSuccess, onClose }: Add_EditContentM
         };
 
         const CreateContentRecord = async () => {
-            const response = await AddContent({
+            // Step 1: Create DB content record
+            const addResponse = await AddContent({
                 contentType: "Video",
                 courseID: courseId,
                 contentTitle: contentTitle,
@@ -99,18 +101,36 @@ function Add_EditContentModal({ courseId, onSuccess, onClose }: Add_EditContentM
                 notes: notes
             });
 
-            if (response.success) {
-                await UploadFileToMuxServers(response.Url);
-            } else {
+            if (!addResponse.success) {
                 setLoading(null);
                 setSuccess(false);
-                setError(response.message);
+                setError(addResponse.message);
+                return;
             }
+
+            const contentId = addResponse.Content.courseContentID;
+            if (!contentId) {
+                setLoading(null);
+                setSuccess(false);
+                setError("Invalid content ID returned from server.");
+                return;
+            }
+
+            // Step 2: Request MUX Direct Upload URL
+            const uploadUrlResponse = await GetDirectUploadUrl(contentId);
+
+            if (!uploadUrlResponse.success || !uploadUrlResponse.Url) {
+                setLoading(null);
+                setSuccess(false);
+                setError(uploadUrlResponse.message || "Failed to generate MUX upload URL.");
+                return;
+            }
+
+            // Step 3: Stream video file directly to MUX
+            await UploadFileToMuxServers(uploadUrlResponse.Url);
         };
 
         await CreateContentRecord();
-
-        if (onSuccess) onSuccess();
     };
 
     return (

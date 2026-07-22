@@ -186,52 +186,72 @@ export interface AddNewContentDTO {
 
 interface AddContentSuccess {
     success: true;
-    Content: Content_Detailed;
-    Url: string;
+    Content: Content;
 }
 
 type AddContentResponse = AddContentSuccess | FetchErrored;
 
 export async function AddContent(NewContent: AddNewContentDTO): Promise<AddContentResponse> {
-
     try {
-
-
-
-
-        //get the response
-
-
         const res = await fetch(`${ContentsEndPoint}/Add`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-                        credentials: 'include',
+            credentials: 'include',
             body: JSON.stringify(NewContent),
         });
 
         if (!res.ok) {
-
-            const errorData = await res.json();
-            return { success: false, message: errorData.message || "No content was found" };
-
+            const errorData = await res.json().catch(() => ({}));
+            return { success: false, message: errorData.message || "Failed to create content record" };
         }
 
         const data = await res.json();
         return {
             success: true,
-            Content: data.content,
-            Url: data.url
+            Content: data
         };
-
-
     } catch (err: any) {
         return {
             success: false,
             message: err.message || "Network error"
         };
-
     }
+}
 
+
+interface DirectUploadSuccess {
+    success: true;
+    Url: string;
+    Content: Content;
+}
+
+type DirectUploadResponse = DirectUploadSuccess | FetchErrored;
+
+export async function GetDirectUploadUrl(contentID: number): Promise<DirectUploadResponse> {
+    try {
+        const res = await fetch(`${ContentsEndPoint}/DirectUpload/${contentID}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: 'include',
+        });
+
+        if (!res.ok) {
+            const errorData = await res.json().catch(() => ({}));
+            return { success: false, message: errorData.message || "Failed to generate upload URL" };
+        }
+
+        const data = await res.json();
+        return {
+            success: true,
+            Url: data.url,
+            Content: data.content_DTO
+        };
+    } catch (err: any) {
+        return {
+            success: false,
+            message: err.message || "Network error"
+        };
+    }
 }
 
 
