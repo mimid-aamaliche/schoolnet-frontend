@@ -4,6 +4,7 @@ import styles from "./HomePageStyle.module.css";
 import { TeacherHomeDto } from "../api/Home";
 import Avatar from "../Components/Avatar";
 import StatCard from "../Components/StatCard";
+import CourseCard from "./CourseCard";
 
 export default function TeacherHome({ data }: { data: TeacherHomeDto }) {
   const profile = data.profile ?? {
@@ -46,46 +47,17 @@ export default function TeacherHome({ data }: { data: TeacherHomeDto }) {
         <div className={styles.coursesGrid}>
           {courses.map(c => (
             <Link key={c.courseID} to={`/Course/${c.courseID}`} className={styles.courseCardLink}>
-            <div className={styles.courseCard}>
-              <div className={styles.courseImgWrap}>
-                {c.image ? (
-                  <img src={c.image} alt={c.title ?? "course"} className={styles.courseImg} />
-                ) : (
-                  <div className={`${styles.courseImgPlaceholder} ${styles.teacherPlaceholder}`}>
-                    🎓
-                  </div>
-                )}
-              </div>
-
-              <div className={styles.courseBody}>
-                <p className={styles.courseTitle}>{c.title ?? "Untitled"}</p>
-
-                <div className={styles.courseMeta}>
-                  <span className={styles.courseFee}>
-                    ${c.feesPerMonth ?? 0}/mo
-                  </span>
-
-                  <span
-                    className={`${styles.badge} ${
-                      c.permission === "admin"
-                        ? styles.badgeGreen
-                        : styles.badgeGray
-                    }`}
-                  >
-                    {c.permission ?? "unknown"}
-                  </span>
-                </div>
-
-                <div className={styles.courseStatsRow}>
-                  <span className={styles.cstat}>
-                    <strong>{c.totalContents ?? 0}</strong> lessons
-                  </span>
-                  <span className={styles.cstat}>
-                    <strong>{c.totalStudents ?? 0}</strong> students
-                  </span>
-                </div>
-              </div>
-            </div>
+              <CourseCard 
+                course={{
+                  courseID: c.courseID,
+                  courseTitle: c.title ?? "Untitled",
+                  courseDescription: `${c.totalContents ?? 0} lessons | ${c.permission ?? "unknown"}`,
+                  imageUrl: c.image ?? null,
+                  courseFeePerMonth: c.feesPerMonth ?? 0,
+                  levelRequiredID: 0
+                }}
+                studentCount={c.totalStudents}
+              />
             </Link>
           ))}
         </div>

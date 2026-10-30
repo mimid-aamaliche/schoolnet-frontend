@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import styles from "./CourseCardStyle.module.css";
 import { Course } from "../api/Courses"
 
@@ -11,13 +12,18 @@ interface courseCardProps {
 }
 
 function CourseCard({ course, progress, lastAccessed, rating, studentCount }: courseCardProps) {
+    const [imageError, setImageError] = useState(false);
+    const placeholderImage = "https://img.freepik.com/free-photo/young-woman-attend-courses-girl-student-studying-holding-notebooks-showing-thumb-up-approval-recommending-company-standing-blue-background_1258-70145.jpg";
+
+    const imageSrc = course.imageUrl && !imageError ? course.imageUrl : placeholderImage;
 
     return (
         <div className={styles.courses__course}>
             <img
-                src={"https://img.freepik.com/free-photo/young-woman-attend-courses-girl-student-studying-holding-notebooks-showing-thumb-up-approval-recommending-company-standing-blue-background_1258-70145.jpg"}
+                src={imageSrc}
                 alt={course.courseTitle}
                 className={styles.course__image}
+                onError={() => setImageError(true)}
             />
             <div className={styles.course__text__wraper}>
                 <div className={styles.course__info}>

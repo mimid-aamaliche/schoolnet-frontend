@@ -4,6 +4,7 @@ import styles from "./HomePageStyle.module.css";
 import { StudentHomeDto } from "../api/Home";
 import Avatar from "../Components/Avatar";
 import StatCard from "../Components/StatCard";
+import CourseCard from "./CourseCard";
 
 
 const isActive = (endDate?: string) =>
@@ -53,47 +54,16 @@ export default function StudentHome({ data }: { data: StudentHomeDto }) {
         <div className={styles.coursesGrid}>
           {courses.map(c => (
             <Link key={c.courseID} to={`/Course/${c.courseID}`} className={styles.courseCardLink}>
-            <div className={styles.courseCard}>
-              <div className={styles.courseImgWrap}>
-                {c.image ? (
-                  <img src={c.image} alt={c.title ?? "course"} className={styles.courseImg} />
-                ) : (
-                  <div className={styles.courseImgPlaceholder}>📚</div>
-                )}
-              </div>
-
-              <div className={styles.courseBody}>
-                <p className={styles.courseTitle}>{c.title ?? "Untitled"}</p>
-
-                <div className={styles.courseMeta}>
-                  <span className={styles.courseFee}>
-                    ${c.feesPerMonth ?? 0}/mo
-                  </span>
-
-                  <span
-                    className={`${styles.badge} ${
-                      !c.isPaid
-                        ? styles.badgeAmber
-                        : isActive(c.endDate)
-                        ? styles.badgeGreen
-                        : styles.badgeGray
-                    }`}
-                  >
-                    {!c.isPaid
-                      ? "Unpaid"
-                      : isActive(c.endDate)
-                      ? "Active"
-                      : "Expired"}
-                  </span>
-                </div>
-
-                <div className={styles.courseStatsRow}>
-                  <span className={styles.cstat}>
-                    <strong>{c.totalContents ?? 0}</strong> lessons
-                  </span>
-                </div>
-              </div>
-            </div>
+              <CourseCard 
+                course={{
+                  courseID: c.courseID,
+                  courseTitle: c.title ?? "Untitled",
+                  courseDescription: `${c.totalContents ?? 0} lessons | ${!c.isPaid ? "Unpaid" : isActive(c.endDate) ? "Active" : "Expired"}`,
+                  imageUrl: c.image ?? null,
+                  courseFeePerMonth: c.feesPerMonth ?? 0,
+                  levelRequiredID: 0
+                }}
+              />
             </Link>
           ))}
         </div>
