@@ -204,7 +204,7 @@ classDiagram
 | `Authentication.ts` | login and sign-up calls for both roles |
 | `Courses.ts` | `FetchAllCourses`, `FetchCourseById`, `FetchCoursesOfUserX`, `AddCourse` |
 | `Content.ts` | `GetCourseXContents`, `GetContentByID`, `AddContent`, `GetDirectUploadUrl` |
-| `Subscription.ts` | `handleSubscribe`, `checkUserHasAccess` |
+| `Subscription.ts` | `handleSubscribe` |
 | `Home.ts` | `fetchHome` and the dashboard types |
 
 ---
