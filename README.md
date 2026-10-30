@@ -158,7 +158,7 @@ classDiagram
 
     class CourseDetailedDTO {
         +Course courseinfo
-        +CourseHandlerDTO[] teachers
+        +List~CourseHandlerDTO~ teachers
     }
 
     class CourseHandlerDTO {
@@ -181,7 +181,7 @@ classDiagram
 
     class HomeDto {
         +number role
-        +StudentHomeDto or TeacherHomeDto data
+        +HomeData data
     }
 
     class user {
